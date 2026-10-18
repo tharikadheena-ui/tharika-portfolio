@@ -4,118 +4,845 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7f7f2">
-  <meta name="description" content="Tharika — Computer Science student, software engineer, and researcher in the making.">
-  <title>Tharika — Engineer in Progress</title>
+  <meta name="description" content="Tharika — Computer Science student, software engineer, and researcher at SRMIST Ramapuram.">
+  <title>Tharika — Software Engineer & Researcher in the Making</title>
 
+  <!-- Typography: Modern Editorial grotesque + monospaced metadata + italic editorial serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 
+  <!-- Core Stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP & ScrollTrigger for editorial motion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Interactive script -->
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="navigation">
-    <a class="wordmark" href="#home">T<span>.</span></a>
+  <!-- Subtle grain overlay for tactile editorial feel -->
+  <div class="grain-overlay" aria-hidden="true"></div>
 
-    <span class="nav-label">INDEPENDENTLY CURIOUS. ENGINEERED TO EXPLORE.</span>
+  <!-- Accessibility Skip Link -->
+  <a href="#content" class="skip-link">Skip to main content</a>
 
-    <a class="nav-contact" href="mailto:YOUR_EMAIL@example.com">
-      Let's talk <span aria-hidden="true">↗</span>
-    </a>
+  <!-- Navigation -->
+  <header class="navigation" id="navigation" role="banner">
+    <div class="nav-container">
+      <a class="wordmark" href="#home" aria-label="Tharika homepage">
+        <span class="wordmark-letter">T</span><span class="wordmark-dot">.</span>
+      </a>
+
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="nav-link" href="#manifesto"><span class="nav-num">01</span> Philosophy</a>
+        <a class="nav-link" href="#journey"><span class="nav-num">02</span> Journey</a>
+        <a class="nav-link" href="#work"><span class="nav-num">03</span> Selected Work</a>
+        <a class="nav-link" href="#experience"><span class="nav-num">04</span> Experience</a>
+        <a class="nav-link" href="#about"><span class="nav-num">05</span> About</a>
+        <a class="nav-link" href="#contact"><span class="nav-num">06</span> Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="local-time" id="localTime" aria-label="Current time in Chennai, India">
+          <span class="time-label">CHE</span>
+          <span class="time-value">--:--:--</span>
+        </div>
+        <a class="nav-contact-cta" href="mailto:tharikadheena@gmail.com">
+          <span>Let's talk</span>
+          <svg class="cta-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <button class="mobile-menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="menu-line"></span>
+          <span class="menu-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="mobile-menu-inner">
+        <div class="mobile-meta">
+          <span class="mono-tag">NAVIGATION</span>
+          <span class="mono-tag">SRMIST CHENNAI</span>
+        </div>
+        <nav class="mobile-nav-links">
+          <a class="mobile-nav-item" href="#manifesto">
+            <span class="mobile-nav-index">01</span>
+            <span class="mobile-nav-title">Philosophy</span>
+          </a>
+          <a class="mobile-nav-item" href="#journey">
+            <span class="mobile-nav-index">02</span>
+            <span class="mobile-nav-title">Life Journey</span>
+          </a>
+          <a class="mobile-nav-item" href="#work">
+            <span class="mobile-nav-index">03</span>
+            <span class="mobile-nav-title">Selected Work</span>
+          </a>
+          <a class="mobile-nav-item" href="#experience">
+            <span class="mobile-nav-index">04</span>
+            <span class="mobile-nav-title">Experience & R&D</span>
+          </a>
+          <a class="mobile-nav-item" href="#about">
+            <span class="mobile-nav-index">05</span>
+            <span class="mobile-nav-title">About Tharika</span>
+          </a>
+          <a class="mobile-nav-item" href="#contact">
+            <span class="mobile-nav-index">06</span>
+            <span class="mobile-nav-title">Contact & Links</span>
+          </a>
+        </nav>
+        <div class="mobile-menu-footer">
+          <a class="mobile-email" href="mailto:tharikadheena@gmail.com">tharikadheena@gmail.com</a>
+          <span class="mobile-note">B.Tech CSE SRMIST · Ready for internships</span>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <p class="eyebrow reveal">COMPUTER SCIENCE · RESEARCH · CREATION</p>
+  <main id="content">
+    <!-- Hero Section -->
+    <section class="hero" id="home" aria-label="Introduction">
+      <div class="hero-top-bar reveal-hero">
+        <div class="hero-tag-group">
+          <span class="eyebrow-pill">COMPUTER SCIENCE</span>
+          <span class="eyebrow-separator">/</span>
+          <span class="eyebrow-pill">SOFTWARE & AI/ML</span>
+          <span class="eyebrow-separator">/</span>
+          <span class="eyebrow-pill">STUDENT R&D</span>
+        </div>
+        <div class="hero-location-tag">
+          <span class="coord-tag">13.0336° N, 80.1785° E</span>
+          <span class="dot-divider">·</span>
+          <span>SRMIST RAMAPURAM</span>
+        </div>
+      </div>
 
-      <h1 class="hero-title">
-        <span class="title-line"><span>Curiosity</span></span>
-        <span class="title-line"><span>into <em>capability.</em></span></span>
-      </h1>
+      <div class="hero-title-wrap">
+        <h1 class="hero-title">
+          <span class="hero-line"><span class="line-inner">Curiosity</span></span>
+          <span class="hero-line"><span class="line-inner">into <span class="italic-serif">capability.</span></span></span>
+        </h1>
+      </div>
 
-      <div class="hero-bottom">
-        <p class="hero-description reveal">
-          I'm Tharika — a computer science student exploring the
-          intersection of software, research, and ideas worth building.
-        </p>
+      <div class="hero-bottom-strip reveal-hero">
+        <div class="hero-bio-col">
+          <p class="hero-name-label">THARIKA — DEVELOPER & RESEARCHER</p>
+          <p class="hero-description">
+            Computer science undergraduate exploring the intersection of practical software engineering, applied AI/ML systems, and experimental interfaces.
+          </p>
+        </div>
 
-        <a class="scroll-cue reveal" href="#manifesto">
-          <span>SCROLL TO EXPLORE</span>
-          <span class="scroll-arrow" aria-hidden="true">↓</span>
-        </a>
+        <div class="hero-meta-col">
+          <div class="meta-item">
+            <span class="meta-label">CURRENTLY</span>
+            <span class="meta-value">B.Tech CSE @ SRMIST Ramapuram</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">EXPERIENCE</span>
+            <span class="meta-value">Student R&D Leadership</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">TARGETING</span>
+            <span class="meta-value">Internships & Research Roles</span>
+          </div>
+        </div>
 
-        <span class="hero-index reveal">01 / THE BEGINNING</span>
+        <div class="hero-scroll-col">
+          <a class="scroll-cue" href="#manifesto" aria-label="Scroll down to philosophy statement">
+            <span class="scroll-text">SCROLL TO EXPLORE</span>
+            <div class="scroll-arrow-circle" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 2.5V11.5M7 11.5L2.5 7M7 11.5L11.5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section class="manifesto" id="manifesto">
-      <p class="eyebrow">01 — THE WAY I THINK</p>
+    <!-- Section 01: Personal Philosophy (Pinned Progressive Scroll) -->
+    <section class="manifesto-section" id="manifesto" aria-label="Personal Philosophy">
+      <div class="manifesto-pin-wrapper">
+        <div class="section-badge-bar">
+          <div class="section-badge">
+            <span class="section-index-num">01</span>
+            <span class="section-index-title">PERSONAL PHILOSOPHY</span>
+          </div>
+          <span class="section-badge-context">ETHOS & APPROACH TO BUILDING</span>
+        </div>
 
-      <h2 class="manifesto-title">
-        Not gonna wait until I finish every page of my book. Just gonna <span class="muted-word">do it anyway </span> and figure things out along the way.
-      </h2>
+        <div class="manifesto-container">
+          <p class="manifesto-eyebrow">THE OPERATING PRINCIPLE</p>
 
-      <div class="manifesto-footer">
-        <span>THOUGHT → EXPERIMENT → EXECUTION</span>
-        <span>ALWAYS IN PROGRESS ↗</span>
+          <!-- Progressive Reveal Typography: Exact wording preserved -->
+          <blockquote class="manifesto-quote" id="manifestoQuote">
+            <div class="quote-chunk chunk-1">
+              <span class="quote-words">"Not gonna wait until I finish every page of my book.</span>
+            </div>
+            <div class="quote-chunk chunk-2">
+              <span class="quote-words">Just gonna <span class="highlight-action">do it anyway</span></span>
+            </div>
+            <div class="quote-chunk chunk-3">
+              <span class="quote-words">and figure things out along the way."</span>
+            </div>
+          </blockquote>
+
+          <div class="manifesto-footer-bar">
+            <div class="manifesto-subtext">
+              <span class="subtext-line">Action precedes perfection.</span>
+              <span class="subtext-line">Real engineering happens through iteration and building.</span>
+            </div>
+            <div class="manifesto-status-tag">
+              <span class="progress-pill">IN PROGRESS</span>
+              <span class="manifesto-indicator">ALWAYS BUILDING ↗</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="work" id="work">
-      <div class="section-heading">
-        <p class="eyebrow">02 — SELECTED WORK</p>
-        <span class="section-note">THINGS I'VE HELPED BRING TO LIFE</span>
+    <!-- Section 02: Interactive Life Journey (Animated Character along Winding Path) -->
+    <section class="journey-section" id="journey" aria-label="Interactive Life Journey">
+      <div class="journey-container">
+        <div class="section-header-row">
+          <div class="section-badge">
+            <span class="section-index-num">02</span>
+            <span class="section-index-title">LIFE JOURNEY</span>
+          </div>
+          
+            <span class="section-tag-note">ORIGIN · GROWTH · HORIZONS</span>
+          </div>
+        </div>
+
+        <div class="journey-intro">
+          <p class="journey-eyebrow">CHRONOLOGICAL PROGRESSION</p>
+          <h2 class="journey-headline">
+            From the first experiment to <span class="italic-serif">what comes next.</span>
+          </h2>
+        </div>
+
+        <!-- The Interactive Canvas / SVG Scene -->
+        <div class="journey-stage" id="journeyStage">
+          <!-- Desktop & Tablet SVG Layout -->
+          <div class="journey-svg-wrap">
+            <svg class="journey-svg" id="journeySvg" viewBox="0 0 1000 620" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Background Guide Path (clean rounded joins) -->
+              <path class="journey-path-bg" d="M 160 90 L 840 230 L 160 380 L 840 520" stroke="rgba(23, 24, 21, 0.08)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Active Animated Path (draws with scroll/progress) -->
+              <path class="journey-path-active" id="journeyPathActive" d="M 160 90 L 840 230 L 160 380 L 840 520" stroke="#171815" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Connection Halos -->
+              <circle class="milestone-glow glow-1" cx="160" cy="90" r="48" fill="rgba(232, 115, 26, 0.14)" opacity="0"/>
+              <circle class="milestone-glow glow-2" cx="840" cy="230" r="48" fill="rgba(232, 115, 26, 0.14)" opacity="0"/>
+              <circle class="milestone-glow glow-3" cx="160" cy="380" r="48" fill="rgba(232, 115, 26, 0.14)" opacity="0"/>
+              <circle class="milestone-glow glow-4" cx="840" cy="520" r="48" fill="rgba(232, 115, 26, 0.14)" opacity="0"/>
+
+              <!-- Milestone Nodes (Circular outlines with large numbers and orange accents) -->
+              <!-- Node 1 -->
+              <g class="journey-node-svg node-1 is-active" data-step="0" role="button" tabindex="0" aria-label="Milestone 1: First year">
+                <circle cx="160" cy="90" r="36" fill="#ffffff" stroke="#171815" stroke-width="7"/>
+                <text x="160" y="99" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="#e8731a">1</text>
+              </g>
+
+              <!-- Node 2 -->
+              <g class="journey-node-svg node-2" data-step="1" role="button" tabindex="0" aria-label="Milestone 2: Second year">
+                <circle cx="840" cy="230" r="36" fill="#ffffff" stroke="#171815" stroke-width="7"/>
+                <text x="840" y="239" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="#e8731a">2</text>
+              </g>
+
+              <!-- Node 3 -->
+              <g class="journey-node-svg node-3" data-step="2" role="button" tabindex="0" aria-label="Milestone 3: Experimentation">
+                <circle cx="160" cy="380" r="36" fill="#ffffff" stroke="#171815" stroke-width="7"/>
+                <text x="160" y="389" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="#e8731a">3</text>
+              </g>
+
+              <!-- Node 4 -->
+              <g class="journey-node-svg node-4" data-step="3" role="button" tabindex="0" aria-label="Milestone 4: The next chapter">
+                <circle cx="840" cy="520" r="36" fill="#ffffff" stroke="#171815" stroke-width="7"/>
+                <text x="840" y="529" text-anchor="middle" font-family="'Manrope', sans-serif" font-weight="800" font-size="28" fill="#e8731a">4</text>
+              </g>
+
+              <!-- The Animated Green Character with Orange Details (Faithful to the hand-drawn sketch) -->
+              <g id="journeyCharacter" class="journey-character" transform="translate(160, 48)">
+                <!-- Shadow beneath character -->
+                <ellipse class="char-shadow" cx="0" cy="38" rx="20" ry="5" fill="rgba(23, 24, 21, 0.16)"/>
+                
+                <g class="char-inner-group">
+                  <!-- Orange Feet / Boots -->
+                  <path class="char-foot foot-left" d="M -12 28 C -16 28, -17 35, -10 36 C -5 36, -6 28, -12 28 Z" fill="#e8731a"/>
+                  <path class="char-foot foot-right" d="M 6 28 C 3 28, 4 36, 10 36 C 16 36, 14 28, 6 28 Z" fill="#e8731a"/>
+                  
+                  <!-- Main Green Organic Body -->
+                  <path class="char-body" d="M -18 10 C -26 0, -22 -18, -12 -24 C -6 -32, 6 -32, 12 -24 C 22 -18, 26 0, 18 10 C 14 24, -14 24, -18 10 Z" fill="#589e3a"/>
+                  
+                  <!-- Organic wing/ear flaps (matching sketch silhouette) -->
+                  <path class="char-ear ear-left" d="M -18 -8 C -29 -14, -30 -3, -19 2 Z" fill="#4a8c2f"/>
+                  <path class="char-ear ear-right" d="M 18 -8 C 29 -14, 30 -3, 19 2 Z" fill="#4a8c2f"/>
+                  
+                  <!-- Playful antenna sprout on top -->
+                  <path class="char-sprout" d="M 0 -27 C -4 -35, 4 -37, 1 -27" stroke="#3e7526" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                  
+                  <!-- Cute expressive face -->
+                  <!-- Left Eye -->
+                  <ellipse class="char-eye eye-left" cx="-6" cy="-8" rx="2.8" ry="3.2" fill="#171815"/>
+                  <circle cx="-5" cy="-9.2" r="1" fill="#ffffff"/>
+                  <!-- Right Eye -->
+                  <ellipse class="char-eye eye-right" cx="6" cy="-8" rx="2.8" ry="3.2" fill="#171815"/>
+                  <circle cx="7" cy="-9.2" r="1" fill="#ffffff"/>
+                  
+                  <!-- Soft blush cheeks (orange accent) -->
+                  <ellipse cx="-11" cy="-3" rx="2.5" ry="1.5" fill="#e8882d" opacity="0.6"/>
+                  <ellipse cx="11" cy="-3" rx="2.5" ry="1.5" fill="#e8882d" opacity="0.6"/>
+                  
+                  <!-- Little smile -->
+                  <path class="char-mouth" d="M -3 -1 Q 0 2 3 -1" stroke="#171815" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+                </g>
+              </g>
+            </svg>
+
+            <!-- Editorial Milestone Story Cards (Positioned alongside the path) -->
+            <div class="journey-cards-layer">
+              <!-- Card 01 -->
+              <article class="milestone-card card-1 is-active" data-step="0" role="button" tabindex="0">
+                <div class="card-pill-row">
+                  <span class="m-badge">01 — FIRST YEAR</span>
+                  <span class="m-status-tag">THE GENESIS</span>
+                </div>
+                <h3 class="m-quote">"One failed startup idea."</h3>
+                <p class="m-desc">
+                  The beginning of the journey. Stepped forward with curiosity, embraced the reality of a failed venture, and learned to figure things out along the way rather than waiting for guarantees.
+                </p>
+              </article>
+
+              <!-- Card 02 -->
+              <article class="milestone-card card-2" data-step="1" role="button" tabindex="0">
+                <div class="card-pill-row">
+                  <span class="m-badge">02 — SECOND YEAR</span>
+                  <span class="m-status-tag">LEADERSHIP</span>
+                </div>
+                <h3 class="m-quote">"R&D Co-Lead at Sketch"</h3>
+                <p class="m-desc">
+                  Technical club at SRMIST. Stepped into leadership: steering technical explorations, organizing collaborative student hack initiatives, and mentoring peers in software and web architecture.
+                </p>
+              </article>
+
+              <!-- Card 03 -->
+              <article class="milestone-card card-3" data-step="2" role="button" tabindex="0">
+                <div class="card-pill-row">
+                  <span class="m-badge">03 — EXPERIMENTATION</span>
+                  <span class="m-status-tag">PRACTICAL TECH</span>
+                </div>
+                <h3 class="m-quote">"Building & experimenting"</h3>
+                <p class="m-desc">
+                  Building practical systems, experimenting with offline-first AI learning tech (PALASH), developing campus platforms (SketchHUB), and seeking hands-on opportunities to sharpen skills.
+                </p>
+              </article>
+
+              <!-- Card 04 -->
+              <article class="milestone-card card-4" data-step="3" role="button" tabindex="0">
+                <div class="card-pill-row">
+                  <span class="m-badge">04 — THE NEXT CHAPTER</span>
+                  <span class="m-status-tag">OPEN HORIZONS</span>
+                </div>
+                <h3 class="m-quote">"Software engineering & research"</h3>
+                <p class="m-desc">
+                  Looking outward toward software engineering internships, research fellowships, and international opportunities. An open, evolving destination driven by continuous curiosity.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Footer note -->
+        <div class="journey-footer-bar">
+          <div class="journey-controls-guide">
+            <span class="guide-num">✦</span>
+            <span>A continuous progression. Jump between milestones to review each phase.</span>
+          </div>
+          <div class="journey-step-indicator" id="stepIndicator">
+            <span class="step-active-text">MILESTONE 01 OF 04</span>
+          </div>
+        </div>
       </div>
-
-      <article class="project">
-        <span class="project-number">01</span>
-        <div class="project-copy">
-          <h3>PALASH</h3>
-          <p>Exploring multilingual, offline-first learning technology.</p>
-        </div>
-        <span class="project-type">AI / ACCESSIBILITY</span>
-        <span class="project-arrow" aria-hidden="true">↗</span>
-      </article>
-
-      <article class="project">
-        <span class="project-number">02</span>
-        <div class="project-copy">
-          <h3>SketchHUB</h3>
-          <p>Building tools to make student communities work better.</p>
-        </div>
-        <span class="project-type">SOFTWARE / WEB</span>
-        <span class="project-arrow" aria-hidden="true">↗</span>
-      </article>
-
-      <article class="project">
-        <span class="project-number">03</span>
-        <div class="project-copy">
-          <h3>ZIA Agency</h3>
-          <p>Turning business ideas into considered digital experiences.</p>
-        </div>
-        <span class="project-type">DESIGN / DEVELOPMENT</span>
-        <span class="project-arrow" aria-hidden="true">↗</span>
-      </article>
-
-      <p class="work-note">
-        A growing body of work. Each project is another question explored.
-      </p>
     </section>
 
-    <section class="closing" id="contact">
-      <p class="eyebrow">03 — WHAT'S NEXT?</p>
-      <h2>Still becoming.<br><span>Always building.</span></h2>
-      <a class="closing-link" href="mailto:YOUR_EMAIL@example.com">
-        Have something interesting in mind? <span aria-hidden="true">↗</span>
-      </a>
+    <!-- Section 03: Selected Projects -->
+    <section class="work-section" id="work" aria-label="Selected Projects">
+      <div class="work-header">
+        <div class="section-badge">
+          <span class="section-index-num">03</span>
+          <span class="section-index-title">SELECTED WORK</span>
+        </div>
+        <div class="work-header-aside">
+          <span class="mono-meta">03 VERIFIED INITIATIVES</span>
+          <span class="mono-meta-sub">ENGINEERING · PLATFORMS · DESIGN</span>
+        </div>
+      </div>
+
+      <div class="projects-list">
+        <!-- Project 01: PALASH -->
+        <article class="project-row" data-project="palash">
+          <div class="project-row-main">
+            <div class="project-index">
+              <span class="p-num">01</span>
+              <span class="p-status-dot" title="Active development"></span>
+            </div>
+            <div class="project-identity">
+              <h3 class="project-title">
+                PALASH
+                <span class="project-tag-pill">AI & ACCESSIBILITY</span>
+              </h3>
+              <p class="project-subtitle">Multilingual, offline-first learning technology.</p>
+            </div>
+            <div class="project-specs">
+              <span class="spec-label">DOMAIN</span>
+              <span class="spec-value">Offline AI / Educational Tech</span>
+            </div>
+            <div class="project-tech-tags">
+              <span class="tag">Offline-First</span>
+              <span class="tag">Multilingual NLP</span>
+              <span class="tag">Accessible Systems</span>
+            </div>
+            <div class="project-action">
+              <div class="action-circle" aria-label="View project details">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Project Expanded Drawer -->
+          <div class="project-drawer">
+            <div class="drawer-grid">
+              <div class="drawer-col">
+                <span class="drawer-label">PROBLEM & CONTEXT</span>
+                <p class="drawer-text">
+                  Educational technology often assumes persistent high-speed internet connectivity and english fluency. PALASH explores architectures that allow educational tools and language translation to operate reliably on low-resource hardware without constant internet dependency.
+                </p>
+              </div>
+              <div class="drawer-col">
+                <span class="drawer-label">MY CONTRIBUTION</span>
+                <p class="drawer-text">
+                  Focused on researching lightweight offline data storage models, multilingual accessibility interfaces, and client-side processing workflows designed to preserve performance on varied device tiers.
+                </p>
+              </div>
+              <div class="drawer-col meta-col">
+                <div class="drawer-data-item">
+                  <span class="data-key">STAGE</span>
+                  <span class="data-val">Research & Prototype</span>
+                </div>
+                <div class="drawer-data-item">
+                  <span class="data-key">FOCUS</span>
+                  <span class="data-val">Low-Connectivity Education</span>
+                </div>
+                <div class="drawer-data-item">
+                  <span class="data-key">CORE STACK</span>
+                  <span class="data-val">Python · Offline Storage · Web APIs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 02: SketchHUB -->
+        <article class="project-row" data-project="sketchhub">
+          <div class="project-row-main">
+            <div class="project-index">
+              <span class="p-num">02</span>
+              <span class="p-status-dot" title="Active"></span>
+            </div>
+            <div class="project-identity">
+              <h3 class="project-title">
+                SketchHUB
+                <span class="project-tag-pill">CAMPUS PLATFORM</span>
+              </h3>
+              <p class="project-subtitle">Student event-management and collaboration platform.</p>
+            </div>
+            <div class="project-specs">
+              <span class="spec-label">DOMAIN</span>
+              <span class="spec-value">Web Application / Campus Systems</span>
+            </div>
+            <div class="project-tech-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Frontend Architecture</span>
+              <span class="tag">Event Workflows</span>
+            </div>
+            <div class="project-action">
+              <div class="action-circle" aria-label="View project details">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Project Expanded Drawer -->
+          <div class="project-drawer">
+            <div class="drawer-grid">
+              <div class="drawer-col">
+                <span class="drawer-label">PROBLEM & CONTEXT</span>
+                <p class="drawer-text">
+                  Campus organizations often face fragmented communications, disorganized registration systems, and inconsistent event discovery across departments. SketchHUB unifies student initiatives into a single coherent interface.
+                </p>
+              </div>
+              <div class="drawer-col">
+                <span class="drawer-label">MY CONTRIBUTION</span>
+                <p class="drawer-text">
+                  Engineered responsive UI modules, organized state management for event registration, and designed streamlined dashboard views for both student attendees and club organizers.
+                </p>
+              </div>
+              <div class="drawer-col meta-col">
+                <div class="drawer-data-item">
+                  <span class="data-key">TARGET</span>
+                  <span class="data-val">Student Communities</span>
+                </div>
+                <div class="drawer-data-item">
+                  <span class="data-key">ROLE</span>
+                  <span class="data-val">Web Engineering & UI</span>
+                </div>
+                <div class="drawer-data-item">
+                  <span class="data-key">CORE STACK</span>
+                  <span class="data-val">JavaScript · HTML5/CSS3 · RESTful APIs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 03: ZIA Agency -->
+        <article class="project-row" data-project="zia">
+          <div class="project-row-main">
+            <div class="project-index">
+              <span class="p-num">03</span>
+              <span class="p-status-dot" title="Delivered"></span>
+            </div>
+            <div class="project-identity">
+              <h3 class="project-title">
+                ZIA Agency
+                <span class="project-tag-pill">DIGITAL PRESENCE</span>
+              </h3>
+              <p class="project-subtitle">Website and considered digital design implementation.</p>
+            </div>
+            <div class="project-specs">
+              <span class="spec-label">DOMAIN</span>
+              <span class="spec-value">Brand Experience / Responsive Web</span>
+            </div>
+            <div class="project-tech-tags">
+              <span class="tag">Creative Direction</span>
+              <span class="tag">Performance</span>
+              <span class="tag">Editorial CSS</span>
+            </div>
+            <div class="project-action">
+              <div class="action-circle" aria-label="View project details">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Project Expanded Drawer -->
+          <div class="project-drawer">
+            <div class="drawer-grid">
+              <div class="drawer-col">
+                <span class="drawer-label">PROBLEM & CONTEXT</span>
+                <p class="drawer-text">
+                  Translating commercial brand strategy into a distinctive digital presence with high typographical sensitivity, fast load times, and structured content hierarchy.
+                </p>
+              </div>
+              <div class="drawer-col">
+                <span class="drawer-label">MY CONTRIBUTION</span>
+                <p class="drawer-text">
+                  Developed semantic layouts, responsive breakpoints, clean visual hierarchy, and cross-browser optimizations ensuring fluid presentation on mobile and high-density displays.
+                </p>
+              </div>
+              <div class="drawer-col meta-col">
+                <div class="drawer-data-item">
+                  <span class="data-key">DISCIPLINE</span>
+                  <span class="data-val">Design & Web Engineering</span>
+                </div>
+                <div class="drawer-data-item">
+                  <span class="data-key">DELIVERABLE</span>
+                  <span class="data-val">Production Website</span>
+                </div>
+                <div class="drawer-data-item">
+                  <span class="data-key">CORE STACK</span>
+                  <span class="data-val">Responsive CSS · Vanilla JS · Semantic HTML</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="work-footer-note">
+        <span class="note-bullet">✦</span>
+        <span>A growing body of work. Each project represents an engineering question tackled through practical execution.</span>
+      </div>
+    </section>
+
+    <!-- Section 04: Experience and Research -->
+    <section class="experience-section" id="experience" aria-label="Experience and Research">
+      <div class="section-header-row">
+        <div class="section-badge">
+          <span class="section-index-num">04</span>
+          <span class="section-index-title">EXPERIENCE & RESEARCH</span>
+        </div>
+        <span class="section-tag-note">LEADERSHIP · ACADEMICS · R&D</span>
+      </div>
+
+      <div class="experience-table">
+        <!-- Entry 01: Student R&D Leadership -->
+        <div class="experience-item">
+          <div class="exp-period">
+            <span class="exp-date">July,2026 — PRESENT</span>
+            <span class="exp-badge">CAMPUS LEADERSHIP</span>
+          </div>
+          <div class="exp-role-info">
+            <h4 class="exp-title">Student R&D Leadership</h4>
+            <p class="exp-organization">Technical Club · SRMIST Ramapuram</p>
+            <p class="exp-description">
+              Spearheading student research and technical development initiatives. Guiding collaborative projects, exploring modern web tooling, coordinating peer problem-solving sessions, and translating exploratory ideas into working software.
+            </p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-meta-label">FOCUS</span>
+            <span class="exp-meta-val">Team Mentorship · Systems Prototyping</span>
+          </div>
+        </div>
+
+        <!-- Entry 02: Academic Engineering -->
+        <div class="experience-item">
+          <div class="exp-period">
+            <span class="exp-date">2025 — 2029</span>
+            <span class="exp-badge">UNDERGRADUATE</span>
+          </div>
+          <div class="exp-role-info">
+            <h4 class="exp-title">B.Tech, Computer Science and Engineering</h4>
+            <p class="exp-organization">SRM Institute of Science and Technology, Ramapuram</p>
+            <p class="exp-description">
+              Rigorous core computing curriculum covering data structures and algorithms, object-oriented systems, database design, operating systems, and computer networks. Developing a strong analytical foundation for software engineering and applied AI research.
+            </p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-meta-label">FOCUS</span>
+            <span class="exp-meta-val">CS Fundamentals · Applied AI/ML</span>
+          </div>
+        </div>
+
+        <!-- Entry 03: Technical Projects & Development -->
+        <div class="experience-item">
+          <div class="exp-period">
+            <span class="exp-date">CONTINUOUS</span>
+            <span class="exp-badge">INDEPENDENT</span>
+          </div>
+          <div class="exp-role-info">
+            <h4 class="exp-title">Technical Projects & Experimental Web Development</h4>
+            <p class="exp-organization">Independent Engineering & Open Exploration</p>
+            <p class="exp-description">
+              Hands-on development of real-world tools, accessibility-driven systems, and modern digital interfaces. Committed to learning by building iteratively and testing with real user feedback.
+            </p>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-meta-label">FOCUS</span>
+            <span class="exp-meta-val">Full-Stack · Offline Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ready to extend note for future research/internships -->
+      <div class="future-extension-box">
+        <div class="extension-left">
+          <span class="ext-label">LOOKING FORWARD</span>
+          <p class="ext-text">Actively preparing for software engineering internships, research fellowships, and international opportunities in systems and AI.</p>
+        </div>
+        <div class="extension-right">
+          <a class="ext-link" href="#contact">
+            <span>Inquire about opportunities</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05: About Tharika (with Portrait) -->
+    <section class="about-section" id="about" aria-label="About Tharika">
+      <div class="section-header-row">
+        <div class="section-badge">
+          <span class="section-index-num">05</span>
+          <span class="section-index-title">ABOUT</span>
+        </div>
+        <span class="section-tag-note">PERSPECTIVE · RIGOR · APPROACH</span>
+      </div>
+
+      <div class="about-grid">
+        <!-- Portrait Column -->
+        <div class="about-portrait-col">
+          <div class="portrait-card">
+            <div class="portrait-frame">
+              <img 
+                src="images/tharika-portrait.jpg" 
+                alt="Portrait of Tharika, Computer Science student and software engineer" 
+                class="portrait-img"
+                width="640" 
+                height="640"
+                loading="lazy"
+              >
+              <div class="portrait-overlay"></div>
+            </div>
+            <div class="portrait-caption">
+              <div class="caption-row">
+                <span class="caption-name">THARIKA</span>
+                <span class="caption-status">B.TECH CSE</span>
+              </div>
+              <div class="caption-meta">
+                <span>SRMIST RAMAPURAM</span>
+                <span>CHENNAI, INDIA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Narrative Column -->
+        <div class="about-narrative-col">
+          <p class="about-kicker">ENGINEERING WITH INTENTION</p>
+          
+          <h2 class="about-headline">
+            Building software that balances analytical rigor with <span class="italic-serif">practical reality.</span>
+          </h2>
+
+          <div class="about-paragraphs">
+            <p>
+              I am a Computer Science and Engineering student at SRMIST Ramapuram with a deliberate focus on software engineering, applied AI/ML, and building real-world digital tools.
+            </p>
+            <p>
+              Rather than waiting for complete certainty before starting, I believe in an experimental, hands-on learning methodology: break a problem down into its fundamentals, build a working prototype, and refine relentlessly through feedback.
+            </p>
+            <p>
+              Whether leading R&D initiatives in student technical clubs, architecting offline-first accessibility solutions like PALASH, or crafting digital experiences with high visual standards, my goal is to produce reliable, thoughtfully engineered technology.
+            </p>
+          </div>
+
+          <!-- Structured Skills & Interest Matrix -->
+          <div class="skills-matrix">
+            <div class="matrix-group">
+              <span class="matrix-title">CORE INTERESTS</span>
+              <ul class="matrix-list">
+                <li>Software Engineering</li>
+                <li>Applied AI / ML Systems</li>
+                <li>Accessible Computing</li>
+                <li>Experimental Web Interfaces</li>
+              </ul>
+            </div>
+            <div class="matrix-group">
+              <span class="matrix-title">TECHNICAL TOOLS</span>
+              <ul class="matrix-list">
+                <li>Python & Algorithms</li>
+                <li>Modern JavaScript / Web APIs</li>
+                <li>Interactive CSS & Motion (GSAP)</li>
+                <li>Git & Collaborative Workflow</li>
+              </ul>
+            </div>
+            <div class="matrix-group">
+              <span class="matrix-title">CURRENT FOCUS</span>
+              <ul class="matrix-list">
+                <li>Offline-First System Design</li>
+                <li>Student Community Platforms</li>
+                <li>Competitive Engineering Prep</li>
+                <li>Research & Development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 06: Contact & Closing Statement -->
+    <section class="contact-section" id="contact" aria-label="Contact">
+      <div class="contact-card">
+        <div class="contact-header">
+          <div class="section-badge">
+            <span class="section-index-num">06</span>
+            <span class="section-index-title">WHAT'S NEXT</span>
+          </div>
+          
+        </div>
+
+        <div class="contact-body">
+          <p class="contact-kicker">GET IN TOUCH</p>
+          <h2 class="contact-big-title">
+            Still becoming.<br>
+            <span class="italic-serif">Always building.</span>
+          </h2>
+
+          <p class="contact-lead">
+            I am actively seeking software engineering internships, undergraduate research opportunities, and collaborative technology initiatives. Let’s create something purposeful together.
+          </p>
+
+          <div class="contact-action-row">
+            <a class="email-direct-button" href="mailto:tharikadheena@gmail.com">
+              <span class="btn-text">tharikadheena@gmail.com</span>
+              <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3.33334 12.6667L12.6667 3.33334M12.6667 3.33334H6.00001M12.6667 3.33334V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <button class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard">
+              <span class="copy-text">Copy email</span>
+              <span class="copied-tooltip" id="copyTooltip" role="status" aria-live="polite">Copied!</span>
+            </button>
+          </div>
+
+          <div class="social-channels-bar">
+            <div class="channel-col">
+              <span class="channel-label">GITHUB</span>
+              <a class="channel-link" href="https://github.com/tharikadheena-ui" target="_blank" rel="noopener noreferrer">
+                <span>github.com/tharikadheena-ui</span>
+                <span class="link-arrow">↗</span>
+              </a>
+            </div>
+            <div class="channel-col">
+              <span class="channel-label">LINKEDIN</span>
+              <a class="channel-link" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <span>linkedin.com/in/tharika</span>
+                <span class="link-arrow">↗</span>
+              </a>
+            </div>
+            <div class="channel-col">
+              <span class="channel-label">LOCATION</span>
+              <span class="channel-static">SRMIST Ramapuram · Chennai, IN</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <a class="wordmark" href="#home">T<span>.</span></a>
-    <span>DESIGNED WITH INTENTION. BUILT WITH CURIOSITY.</span>
-    <a href="#home">BACK TO TOP ↑</a>
+  <!-- Editorial Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a class="footer-wordmark" href="#home" aria-label="Back to top">
+          T<span>.</span>
+        </a>
+        <span class="footer-copy">© 2026 THARIKA · ALL RIGHTS RESERVED</span>
+      </div>
+
+      <div class="footer-center">
+        <span class="footer-statement">ENGINEERED WITH INTENTION. ROOTED IN RIGOR.</span>
+      </div>
+
+      <div class="footer-actions">
+        <a class="back-to-top" href="#home" id="backToTop">
+          <span>BACK TO TOP</span>
+          <span class="top-arrow" aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </div>
   </footer>
 </body>
 </html>
